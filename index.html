@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <meta name="theme-color" content="#667eea" />
-  <title>FastAPI Quest - REST Playground</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#00c6ae" />
+  <title>FastAPI Wave - REST Console</title>
+  <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
   <header class="hero">
     <div class="brand">
-      <div class="logo">⚡</div>
+      <div class="logo">🌊</div>
       <div>
-        <h1>FastAPI Quest</h1>
-        <p class="tagline">Turn REST practice into a game. Build, break, fix, repeat.</p>
+        <h1>FastAPI Wave</h1>
+        <p class="tagline">A touch-friendly REST console tuned for your deployed backend.</p>
       </div>
     </div>
     <nav>
@@ -23,7 +23,7 @@
   </header>
 
   <section class="hud">
-    <div class="chip">Backend URL: <span id="baseUrlStatus">http://localhost:8000</span></div>
+    <div class="chip">Backend URL: <span id="baseUrlStatus">https://fast-api-demo-4qmb.onrender.com</span></div>
     <div class="chip">Requests: <span id="reqCount">0</span></div>
     <div class="chip">XP: <span id="xp">0</span></div>
     <div class="chip">Quests: <span id="questsDone">0</span>/4</div>
@@ -32,7 +32,7 @@
   <section class="config card">
     <div class="row">
       <label for="baseUrl">Backend Base URL</label>
-      <input id="baseUrl" type="text" value="http://localhost:8000" />
+      <input id="baseUrl" type="text" value="https://fast-api-demo-4qmb.onrender.com" />
       <button id="saveBaseUrl">Set</button>
     </div>
     <p class="muted">Tip: point this to your deployed backend to keep the game going online.</p>

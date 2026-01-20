@@ -7,7 +7,7 @@ const prettyCustom = (obj) => {
 };
 
 const state = {
-  baseUrl: localStorage.getItem('baseUrl') || 'http://localhost:8000',
+  baseUrl: localStorage.getItem('baseUrl') || 'https://fast-api-demo-4qmb.onrender.com',
   items: [],
   charts: {}
 };

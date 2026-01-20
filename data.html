@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <meta name="theme-color" content="#667eea" />
-  <title>FastAPI Quest - Data Lab</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#00c6ae" />
+  <title>FastAPI Wave - Data Lab</title>
+  <link rel="stylesheet" href="theme.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header class="hero">
     <div class="brand">
-      <div class="logo">📊</div>
+      <div class="logo">📡</div>
       <div>
         <h1>Data Lab</h1>
-        <p class="tagline">See your API data in tables and charts.</p>
+        <p class="tagline">Glanceable tables and charts for your live API.</p>
       </div>
     </div>
     <nav>
@@ -24,7 +24,7 @@
   </header>
 
   <section class="hud">
-    <div class="chip">Backend URL: <span id="baseUrlStatus">http://localhost:8000</span></div>
+    <div class="chip">Backend URL: <span id="baseUrlStatus">https://fast-api-demo-4qmb.onrender.com</span></div>
     <div class="chip">Items: <span id="itemCount">0</span></div>
     <div class="chip">Total Value: <span id="totalValue">0</span></div>
   </section>
@@ -32,7 +32,7 @@
   <section class="config card">
     <div class="row">
       <label for="baseUrl">Backend Base URL</label>
-      <input id="baseUrl" type="text" value="http://localhost:8000" />
+      <input id="baseUrl" type="text" value="https://fast-api-demo-4qmb.onrender.com" />
       <button id="saveBaseUrl">Set</button>
       <button id="backPlay">Back to Playground</button>
     </div>

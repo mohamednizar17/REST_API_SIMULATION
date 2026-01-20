@@ -2,7 +2,7 @@ const $ = (sel) => document.querySelector(sel);
 const pretty = (obj) => JSON.stringify(obj, null, 2);
 
 const state = {
-  baseUrl: localStorage.getItem('baseUrl') || 'http://localhost:8000',
+  baseUrl: localStorage.getItem('baseUrl') || 'https://fast-api-demo-4qmb.onrender.com',
   reqCount: 0,
   xp: 0,
   quests: { list: false, create: false, update: false, delete: false },
