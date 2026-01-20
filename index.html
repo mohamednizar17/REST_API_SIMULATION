@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="theme-color" content="#667eea" />
+  <title>FastAPI Quest - REST Playground</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="brand">
+      <div class="logo">⚡</div>
+      <div>
+        <h1>FastAPI Quest</h1>
+        <p class="tagline">Turn REST practice into a game. Build, break, fix, repeat.</p>
+      </div>
+    </div>
+    <nav>
+      <a class="active" href="index.html">Playground</a>
+      <a href="data.html">Data Lab</a>
+    </nav>
+  </header>
+
+  <section class="hud">
+    <div class="chip">Backend URL: <span id="baseUrlStatus">http://localhost:8000</span></div>
+    <div class="chip">Requests: <span id="reqCount">0</span></div>
+    <div class="chip">XP: <span id="xp">0</span></div>
+    <div class="chip">Quests: <span id="questsDone">0</span>/4</div>
+  </section>
+
+  <section class="config card">
+    <div class="row">
+      <label for="baseUrl">Backend Base URL</label>
+      <input id="baseUrl" type="text" value="http://localhost:8000" />
+      <button id="saveBaseUrl">Set</button>
+    </div>
+    <p class="muted">Tip: point this to your deployed backend to keep the game going online.</p>
+  </section>
+
+  <main class="grid">
+    <section class="card quest">
+      <div class="quest-header">
+        <h2>Quest Log</h2>
+        <small class="muted">Complete tasks to earn XP</small>
+      </div>
+      <ul id="questList" class="quest-list">
+        <li data-quest="list">Refresh items (GET)</li>
+        <li data-quest="create">Create an item (POST)</li>
+        <li data-quest="update">Update an item (PUT)</li>
+        <li data-quest="delete">Delete an item (DELETE)</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>All Items (GET /items)</h2>
+      <div class="actions">
+        <button id="refreshItems">Refresh</button>
+      </div>
+      <pre id="itemsOutput" class="code"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Create Item (POST /items)</h2>
+      <form id="createForm">
+        <div class="field"><label>Name</label><input name="name" type="text" placeholder="Laptop" required /></div>
+        <div class="field"><label>Description</label><input name="description" type="text" placeholder="Gaming laptop" /></div>
+        <div class="field two">
+          <div><label>Price</label><input name="price" type="number" step="0.01" placeholder="1299.99" required /></div>
+          <div><label>Quantity</label><input name="quantity" type="number" placeholder="5" value="0" /></div>
+        </div>
+        <div class="actions">
+          <button type="submit">Create</button>
+          <button type="button" id="createRandom">Create Random</button>
+        </div>
+      </form>
+      <pre id="createOutput" class="code"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Update Item (PUT /items/{id})</h2>
+      <form id="updateForm">
+        <div class="field"><label>Item ID</label><input name="id" type="number" placeholder="1" required /></div>
+        <div class="field"><label>New Name (optional)</label><input name="name" type="text" placeholder="New Name" /></div>
+        <div class="field two">
+          <div><label>New Price (optional)</label><input name="price" type="number" step="0.01" placeholder="1499.99" /></div>
+          <div><label>New Quantity (optional)</label><input name="quantity" type="number" placeholder="3" /></div>
+        </div>
+        <div class="field"><label>New Description (optional)</label><input name="description" type="text" placeholder="Better GPU" /></div>
+        <div class="actions"><button type="submit">Update</button></div>
+      </form>
+      <pre id="updateOutput" class="code"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Delete Item (DELETE /items/{id})</h2>
+      <form id="deleteForm">
+        <div class="field"><label>Item ID</label><input name="id" type="number" placeholder="1" required /></div>
+        <div class="actions"><button type="submit" class="danger">Delete</button></div>
+      </form>
+      <pre id="deleteOutput" class="code"></pre>
+    </section>
+
+    <section class="card wide">
+      <h2>Custom Fields (Extend Pydantic Model)</h2>
+      <p class="muted">Add your own fields to the Item model (extra fields are allowed in the API).</p>
+      <form id="customFieldForm" class="custom-grid">
+        <input name="field" type="text" placeholder="fieldName" required />
+        <select name="type">
+          <option value="string">string</option>
+          <option value="number">number</option>
+          <option value="boolean">boolean</option>
+        </select>
+        <input name="value" type="text" placeholder="value" required />
+        <button type="submit">Add Field</button>
+      </form>
+      <div id="customFieldsList" class="chips"></div>
+      <div class="schema-preview">
+        <div>
+          <h4>Base Model</h4>
+          <pre class="code small">{
+  "name": "string",
+  "description": "string?",
+  "price": "number",
+  "quantity": "number"
+}</pre>
+        </div>
+        <div>
+          <h4>With Your Custom Fields</h4>
+          <pre id="customPreview" class="code small"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="card wide">
+      <h2>Last Request & Response</h2>
+      <div class="rr-grid">
+        <div>
+          <h3>Request</h3>
+          <pre id="reqViewer" class="code small"></pre>
+        </div>
+        <div>
+          <h3>Response</h3>
+          <pre id="resViewer" class="code small"></pre>
+        </div>
+      </div>
+      <p class="muted">Tip: Open DevTools → Network to see the raw HTTP traffic.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built for learning FastAPI REST. Have fun! 🎉 · <a href="data.html">Jump to Data Lab</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
